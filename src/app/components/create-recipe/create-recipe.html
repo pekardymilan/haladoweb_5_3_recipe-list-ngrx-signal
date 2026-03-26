@@ -1,0 +1,11 @@
+<form [formGroup]="recipeForm" class="recipe-form" (ngSubmit)="onSubmit()">
+  <formly-form
+    [fields]="recipeFormFields"
+    [options]="recipeFormOptions"
+    [form]="recipeForm"
+  ></formly-form>
+  <div class="form-actions">
+    <button type="button" matButton="outlined" (click)="onCancel()">Cancel</button>
+    <button type="submit" matButton="filled">Submit</button>
+  </div>
+</form>

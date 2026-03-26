@@ -1,0 +1,29 @@
+@if(isLoggedIn){
+<div class="app-header">
+  <div class="menu-section">
+    <button matIconButton [matMenuTriggerFor]="menu" aria-label="Menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
+      <button mat-menu-item routerLink="/recipes">
+        <mat-icon>list</mat-icon>
+        <span>Recipe list</span>
+      </button>
+    </mat-menu>
+  </div>
+
+  <div class="auth-section">
+    <button matButton="outlined" (click)="onLogout()">Logout</button>
+  </div>
+</div>
+}
+
+<div class="content">
+  <div class="content-inner">
+    <router-outlet></router-outlet>
+  </div>
+</div>

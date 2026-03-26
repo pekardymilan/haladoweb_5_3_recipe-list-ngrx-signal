@@ -1,0 +1,28 @@
+<mat-form-field appearance="outline" [style.margin-right]="'5px'">
+  <mat-label>Search</mat-label>
+  <input matInput [formControl]="searchControl" />
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+<button matFab extended [style.margin-right]="'5px'" (click)="onCreate()">
+  <mat-icon>add</mat-icon>
+  Add new
+</button>
+<!-- we can simply select a state property with () signal getter -->
+@if(recipeStore.selectedRecipes().length > 0){
+<button matFab extended (click)="onDeleteMany()">
+  <mat-icon>remove</mat-icon>
+  Remove selected
+</button>
+
+{{ recipeStore.selectedRecipesCount() }} selected }
+<mat-grid-list cols="2" rowHeight="3:1">
+  @for(recipe of recipeStore.recipes() | recipeSearch : searchString; track recipe.id){
+  <mat-grid-tile
+    ><app-recipe-card
+      [recipe]="recipe"
+      [isChecked]="recipeStore.selectedRecipes().includes(recipe.id!)"
+      (selectAction)="onSelect($event)"
+    ></app-recipe-card
+  ></mat-grid-tile>
+  }
+</mat-grid-list>
